@@ -46,6 +46,9 @@ sap.ui.define([
 			this.oBusinessModel = this.oView.getModel("businessModel");
 			this._oTable = this.oView.byId("productTableId");
 			this._fetchF4();
+			
+			var oPopOver = this.oView.byId("idPopOver");
+            oPopOver.connect(this.oView.byId("columnVizFrameId").getVizUid());
 		},
 		
 		/**
@@ -124,6 +127,7 @@ sap.ui.define([
 			this.oViewModel.setProperty("/sTableTitle", this.oI18n.getText("tableTitle", [0]));
 			this.oBusinessModel.setProperty("/Products", []);
 			this._oTable.setBusy(true);
+			this.oView.byId("chartContainerId").setBusy(true);
 			this.oDataModel.read("/Products", {
 				groupId: "productData",
 				filters: aFilter,
@@ -132,11 +136,13 @@ sap.ui.define([
 				},
 				success: function(oData) {
 					this._oTable.setBusy(false);
+					this.oView.byId("chartContainerId").setBusy(false);
 					this.oViewModel.setProperty("/sTableTitle", this.oI18n.getText("tableTitle", [oData.results.length]));
 					this.oBusinessModel.setProperty("/Products", oData.results);
 				}.bind(this),
 				error: function(error) {
 					this._oTable.setBusy(false);
+					this.oView.byId("chartContainerId").setBusy(false);
 					sap.m.MessageBox.error("Load data failed.");
 				}.bind(this)
 			});

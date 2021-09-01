@@ -125,13 +125,17 @@
 							</uiTable:Column>
 						</uiTable:columns>
 					</uiTable:Table>
-					<commons:ChartContainer visible="{=${viewModel>/sTabBartKey} === 'chart'}" showFullScreen="true" showPersonalization="false"
-						autoAdjustHeight="false">
+					<commons:ChartContainer id="chartContainerId" visible="{=${viewModel>/sTabBartKey} === 'chart'}" showFullScreen="true" showPersonalization="false"
+						autoAdjustHeight="false" busyIndicatorDelay="0">
 						<commons:content>
 							<commons:ChartContainerContent icon="sap-icon://vertical-bar-chart-2" title="Products Analysis">
 								<commons:content>
-									<viz:VizFrame height="36rem" width="100%" vizType="column" uiConfig="{applicationSet:'fiori'}"
+									<viz:Popover id="idPopOver"></viz:Popover>
+									<viz:VizFrame id="columnVizFrameId" height="36rem" width="100%" vizType="column" uiConfig="{applicationSet:'fiori'}"
 										vizProperties="{
+											title: {
+												text: 'Products Analysis'
+											},
 											plotArea: {
 							                    dataLabel: {
 							                        visible: true

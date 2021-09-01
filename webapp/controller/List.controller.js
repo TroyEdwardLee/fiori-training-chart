@@ -25,7 +25,8 @@ sap.ui.define([
 					"ProductName": "",
 					"SupplierID": []
 				},
-				"iTableSelectedLen": 0
+				"iTableSelectedLen": 0,
+				"sTabBartKey": "table"
 				/* Uncalled structure
 				* "maintainEmployee": {
 					"ProductID": "",

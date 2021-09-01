@@ -141,7 +141,8 @@
 										<viz:dataset>
 											<viz.data:FlattenedDataset data="{businessModel>/Products}">
 												<viz.data:dimensions>
-													<viz.data:DimensionDefinition name="Product Name" value="{businessModel>ProductName}"/>
+													<viz.data:DimensionDefinition name="Product" value="{businessModel>ProductName}"/>
+													<viz.data:DimensionDefinition name="Supplier" value="{businessModel>Supplier/CompanyName}"/>
 												</viz.data:dimensions>
 												<viz.data:measures>
 													<viz.data:MeasureDefinition name="Unit Price" value="{businessModel>UnitPrice}"/>
@@ -152,7 +153,7 @@
 										</viz:dataset>
 										<viz:feeds>
 											<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Unit Price,Units In Stock,Units On Order"/>
-											<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product Name"/>
+											<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Supplier,Product"/>
 										</viz:feeds>
 									</viz:VizFrame>
 								</commons:content>

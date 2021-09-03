@@ -125,23 +125,23 @@
 							</uiTable:Column>
 						</uiTable:columns>
 					</uiTable:Table>
-					<commons:ChartContainer id="chartContainerId" visible="{=${viewModel>/sTabBartKey} === 'chart'}" showFullScreen="true" showPersonalization="false"
-						autoAdjustHeight="false" busyIndicatorDelay="0">
+					<commons:ChartContainer id="chartContainerId" visible="{=${viewModel>/sTabBartKey} === 'chart'}" showFullScreen="true"
+						autoAdjustHeight="true" showPersonalization="false" busyIndicatorDelay="0">
+						<commons:dimensionSelectors>
+							<Select selectedKey="{viewModel>/sVizType}" change="handleVizTypeChange">
+								<items>
+									<core:Item key="column" text="Column"/>
+									<core:Item key="line" text="Line"/>
+									<core:Item key="stacked_column" text="Stacked Column"/>
+									<core:Item key="stacked_combination" text="Stacked Combination"/>
+								</items>
+							</Select>
+						</commons:dimensionSelectors>
 						<commons:content>
 							<commons:ChartContainerContent icon="sap-icon://vertical-bar-chart-2" title="Products Analysis">
 								<commons:content>
 									<viz:Popover id="idPopOver"></viz:Popover>
-									<viz:VizFrame id="columnVizFrameId" height="36rem" width="100%" vizType="column" uiConfig="{applicationSet:'fiori'}"
-										vizProperties="{
-											title: {
-												text: 'Products Analysis'
-											},
-											plotArea: {
-							                    dataLabel: {
-							                        visible: true
-							                    }
-							                }
-										}">
+									<viz:VizFrame id="columnVizFrameId" height="36rem" width="100%" vizType="{viewModel>/sVizType}" uiConfig="{applicationSet:'fiori'}">
 										<viz:dataset>
 											<viz.data:FlattenedDataset data="{businessModel>/Products}">
 												<viz.data:dimensions>

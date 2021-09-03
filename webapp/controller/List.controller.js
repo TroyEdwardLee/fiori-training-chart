@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/m/ColumnListItem",
 	"fiori/training/chart/model/models",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(Controller, JSONModel, Fragment, ColumnListItem, models, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"fiori/training/chart/common/Constants"
+], function(Controller, JSONModel, Fragment, ColumnListItem, models, Filter, FilterOperator, Constants) {
 	"use strict";
 
 	return Controller.extend("fiori.training.chart.controller.List", {
@@ -26,7 +27,8 @@ sap.ui.define([
 					"SupplierID": []
 				},
 				"iTableSelectedLen": 0,
-				"sTabBartKey": "table"
+				"sTabBartKey": "table",
+				"sVizType": "column"
 				/* Uncalled structure
 				* "maintainEmployee": {
 					"ProductID": "",
@@ -47,8 +49,10 @@ sap.ui.define([
 			this._oTable = this.oView.byId("productTableId");
 			this._fetchF4();
 			
+			var oVizFrame = this.oView.byId("columnVizFrameId");
+			oVizFrame.setVizProperties(Constants.baseProperties);
 			var oPopOver = this.oView.byId("idPopOver");
-            oPopOver.connect(this.oView.byId("columnVizFrameId").getVizUid());
+            oPopOver.connect(oVizFrame.getVizUid());
 		},
 		
 		/**
@@ -87,6 +91,7 @@ sap.ui.define([
 					if (aBatchRes[1].statusCode === "200" && aBatchRes[1].statusText === "OK") {
 						this.oBusinessModel.setProperty("/SupplierF4", aBatchRes[1].data.results);
 					}
+					console.log(this.oView.byId("columnVizFrameId"));
 				}.bind(this),
 				error: function(error) {
 					this.oView.byId("filterBarId").setBusy(false);
@@ -366,6 +371,12 @@ sap.ui.define([
 					sap.m.MessageBox.error("Delete Employee info failed.");
 				}
 			});
+		},
+		
+		handleVizTypeChange: function() {
+			// var sVizType = this.oViewModel.getProperty("/sVizType");
+			var oVizFrame = this.oView.byId("columnVizFrameId");
+			oVizFrame.setVizProperties(Constants.baseProperties);
 		}
 		/**
 		* Uncalled methods end

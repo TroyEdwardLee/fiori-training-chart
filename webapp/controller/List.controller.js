@@ -73,10 +73,7 @@ sap.ui.define([
 			}
 			this.oDataModel.setDeferredGroups(aDeferredGroups);
 			this.oDataModel.read("/Products", {
-				groupId: "F4Data",
-				success: function(oData) {
-					return oData;
-				}
+				groupId: "F4Data"
 			});
 			this.oDataModel.read("/Suppliers", {
 				groupId: "F4Data"

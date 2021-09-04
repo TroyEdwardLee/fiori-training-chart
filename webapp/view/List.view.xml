@@ -39,7 +39,7 @@
 			</f:DynamicPageHeader>
 		</f:header>
 		<f:content>
-			<IconTabBar stretchContentHeight="true" selectedKey="{viewModel>/sTabBartKey}">
+			<IconTabBar stretchContentHeight="true" expandable="false" selectedKey="{viewModel>/sTabBartKey}">
 				<items>
 					<IconTabFilter icon="sap-icon://table-view" key="table"></IconTabFilter>
 					<IconTabFilter icon="sap-icon://vertical-bar-chart-2" key="chart"></IconTabFilter>

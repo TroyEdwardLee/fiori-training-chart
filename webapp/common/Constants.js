@@ -12,6 +12,10 @@ sap.ui.define(["sap/ui/base/Object", "sap/viz/ui5/format/ChartFormatter"], funct
 			},
 			dataShape: {
 				primaryAxis: ["line", "bar", "bar"]
+			},
+			dataPointSize: {
+				min: 30,
+				max: 50
 			}
 		}
 	};
